@@ -1,3 +1,17 @@
+[font]
+size = 16
+
+[font.normal]
+family = "JetBrains Mono"
+
+[window]
+decorations = "none"
+
+[window.padding]
+x = 5
+y = 0
+
+
 # Colors (Kanagawa Wave)
 # Source https//github.com/rebelot/kanagawa.nvim
 
@@ -36,20 +50,3 @@ color = '#ffa066'
 [[colors.indexed_colors]]
 index = 17
 color = '#ff5d62'
-
-
-[font]
-size = 25
-
-[font.normal]
-family = "UbuntuMono Nerd Font"
-
-[window]
-decorations = "none"
-
-[window.padding]
-x = 7
-y = 0
-
-[general]
-live_config_reload = true
