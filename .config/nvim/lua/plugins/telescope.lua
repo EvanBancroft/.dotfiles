@@ -15,10 +15,10 @@ return {
     end)
   end,
   keys = {
-    { "<leader>ff",  "<cmd>Telescope find_files<CR>",             desc = "Files" },
-    { "<leader>fr",  "<cmd>Telescope oldfiles<CR>",               desc = "Recent files" },
-    { "<leader>fc",  "<cmd>Telescope commands<CR>",               desc = "Commands" },
-    { "<leader>fC",  "<cmd>Telescope colorscheme<CR>",            desc = "Colorscheme" },
+    { "<leader>ff", "<cmd>Telescope find_files<CR>",             desc = "Files" },
+    { "<leader>fr", "<cmd>Telescope oldfiles<CR>",               desc = "Recent files" },
+    { "<leader>fc", "<cmd>Telescope commands<CR>",               desc = "Commands" },
+    { "<leader>fC", "<cmd>Telescope colorscheme<CR>",            desc = "Colorscheme" },
     { "<leader>fh", "<cmd>Telescope find_files hidden=true<CR>", desc = "Hidden Files" },
   },
 }
