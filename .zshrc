@@ -72,9 +72,11 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting fast-syntax-highlighting zsh-autocomplete)
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting fast-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
+
+bindkey "^I" autosuggest-accept
 
 # User configuration
 
@@ -124,3 +126,6 @@ alias work='cd Projects/Work'
 # Fig post block. Keep at the bottom of this file.
 [[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
 
+
+# Shopify Hydrogen alias to local projects
+alias h2='$(npm prefix -s)/node_modules/.bin/shopify hydrogen'

@@ -1,9 +1,9 @@
-
-	return {
-    'rebelot/kanagawa.nvim', 
-    lazy = false,
-    config = function()
-        overrides = function(colors)
+return {
+  "rebelot/kanagawa.nvim",
+  lazy = false,
+  config = function()
+    overrides =
+        function(colors)
           local theme = colors.theme
           return {
             TelescopeTitle = { fg = theme.ui.special, bold = true },
@@ -28,8 +28,7 @@
             LazyNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
             MasonNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
           }
-        end,      
-
-      vim.cmd("colorscheme kanagawa")
-    end    
-  }
+        end,
+        vim.cmd("colorscheme kanagawa")
+  end,
+}
