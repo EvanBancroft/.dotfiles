@@ -76,7 +76,6 @@ plugins=(git zsh-autosuggestions zsh-syntax-highlighting fast-syntax-highlightin
 
 source $ZSH/oh-my-zsh.sh
 
-bindkey "^I" autosuggest-accept
 
 # User configuration
 
@@ -129,3 +128,8 @@ alias work='cd Projects/Work'
 
 # Shopify Hydrogen alias to local projects
 alias h2='$(npm prefix -s)/node_modules/.bin/shopify hydrogen'
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+eval "$(zoxide init --cmd cd zsh)"
+
+bindkey "^I" autosuggest-accept
