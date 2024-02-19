@@ -119,7 +119,7 @@ return {
       end)
 
       require("mason-lspconfig").setup({
-        ensure_installed = {},
+        ensure_installed = { "tsserver", "elixirls" },
         handlers = {
           lsp_zero.default_setup,
           lua_ls = function()

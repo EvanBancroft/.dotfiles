@@ -49,7 +49,7 @@ config.color_schemes = {
   ["Kanagawa (Dragon)"] = kanagawa_dragon_colors,
 }
 
-config.color_scheme = "Kanagawa (Dragon)"
+config.color_scheme = "Rosé Pine Moon (Gogh)"
 
 config.font = wezterm.font("JetBrains Mono")
 

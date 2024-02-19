@@ -4,6 +4,7 @@ return {
   -- or                              , branch = '0.1.x',
   dependencies = { "nvim-lua/plenary.nvim" },
   cmd = "Telescope",
+  lazy = false,
   config = function(_, opts)
     require("telescope").setup(opts)
 

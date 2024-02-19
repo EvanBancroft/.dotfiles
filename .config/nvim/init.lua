@@ -20,4 +20,4 @@ require("lazy").setup("plugins")
 require("vim-options")
 
 vim.o.termguicolors = true
-vim.cmd("colorscheme kanagawa-dragon")
+vim.cmd("colorscheme rose-pine")
