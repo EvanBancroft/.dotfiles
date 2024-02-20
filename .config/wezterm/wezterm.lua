@@ -5,7 +5,38 @@ local act = wezterm.action
 -- This will hold the configuration.
 local config = wezterm.config_builder()
 
--- This is where you actually apply your config choices
+local function is_vim(pane)
+  local process_name = string.gsub(pane:get_foreground_process_name(), "(.*[/\\])(.*)", "%2")
+  return process_name == "nvim" or process_name == "vim"
+end
+
+local direction_keys = {
+  h = "Left",
+  j = "Down",
+  k = "Up",
+  l = "Right",
+}
+
+local function split_nav(resize_or_move, key)
+  return {
+    key = key,
+    mods = resize_or_move == "resize" and "META" or "CTRL",
+    action = wezterm.action_callback(function(win, pane)
+      if is_vim(pane) then
+        -- pass the keys through to vim/nvim
+        win:perform_action({
+          SendKey = { key = key, mods = resize_or_move == "resize" and "META" or "CTRL" },
+        }, pane)
+      else
+        if resize_or_move == "resize" then
+          win:perform_action({ AdjustPaneSize = { direction_keys[key], 3 } }, pane)
+        else
+          win:perform_action({ ActivatePaneDirection = direction_keys[key] }, pane)
+        end
+      end
+    end),
+  }
+end
 
 local kanagawa_dragon_colors = {
   foreground = "#c5c9c5",
@@ -45,11 +76,13 @@ local kanagawa_dragon_colors = {
   indexed = { [16] = "#B6927B", [17] = "#B98D7B" },
 }
 
+-- This is where you actually apply your config choices
+
 config.color_schemes = {
   ["Kanagawa (Dragon)"] = kanagawa_dragon_colors,
 }
 
-config.color_scheme = "Rosé Pine Moon (Gogh)"
+config.color_scheme = "rose-pine"
 
 config.font = wezterm.font("JetBrains Mono")
 
@@ -63,8 +96,8 @@ config.default_workspace = "main"
 
 -- Dim inactive panes
 config.inactive_pane_hsb = {
-  saturation = 0.24,
-  brightness = 0.5,
+  saturation = 0.6,
+  brightness = 0.6,
 }
 
 -- Keys
@@ -78,13 +111,19 @@ config.keys = {
   -- Pane keybindings
   { key = "s",          mods = "LEADER",      action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
   { key = "v",          mods = "LEADER",      action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
-  { key = "h",          mods = "LEADER",      action = act.ActivatePaneDirection("Left") },
-  { key = "j",          mods = "LEADER",      action = act.ActivatePaneDirection("Down") },
-  { key = "k",          mods = "LEADER",      action = act.ActivatePaneDirection("Up") },
-  { key = "l",          mods = "LEADER",      action = act.ActivatePaneDirection("Right") },
   { key = "q",          mods = "LEADER",      action = act.CloseCurrentPane({ confirm = true }) },
-  { key = "z",          mods = "LEADER",      action = act.TogglePaneZoomState },
+  { key = "m",          mods = "LEADER",      action = act.TogglePaneZoomState },
   { key = "o",          mods = "LEADER",      action = act.RotatePanes("Clockwise") },
+
+  split_nav("move", "h"),
+  split_nav("move", "j"),
+  split_nav("move", "k"),
+  split_nav("move", "l"),
+  -- -- resize panes
+  split_nav("resize", "h"),
+  split_nav("resize", "j"),
+  split_nav("resize", "k"),
+  split_nav("resize", "l"),
   -- We can make separate keybindings for resizing panes
   -- But Wezterm offers custom "mode" in the name of "KeyTable"
   {
@@ -94,10 +133,6 @@ config.keys = {
   },
 
   -- Tab keybindings
-  { key = "t", mods = "LEADER", action = act.SpawnTab("CurrentPaneDomain") },
-  { key = "[", mods = "LEADER", action = act.ActivateTabRelative(-1) },
-  { key = "]", mods = "LEADER", action = act.ActivateTabRelative(1) },
-  { key = "n", mods = "LEADER", action = act.ShowTabNavigator },
   {
     key = "e",
     mods = "LEADER",
@@ -114,6 +149,11 @@ config.keys = {
       end),
     }),
   },
+  {
+    key = "Enter",
+    mods = "LEADER",
+    action = wezterm.action.ActivateCopyMode,
+  },
   -- Key table for moving tabs around
   { key = "m", mods = "LEADER",       action = act.ActivateKeyTable({ name = "move_tab", one_shot = false }) },
   -- Or shortcuts to move tab w/o move_tab table. SHIFT is for when caps lock is on
@@ -122,33 +162,6 @@ config.keys = {
 
   -- Lastly, workspace
   { key = "w", mods = "LEADER",       action = act.ShowLauncherArgs({ flags = "FUZZY|WORKSPACES" }) },
-}
--- I can use the tab navigator (LDR t), but I also want to quickly navigate tabs with index
-for i = 1, 9 do
-  table.insert(config.keys, {
-    key = tostring(i),
-    mods = "LEADER",
-    action = act.ActivateTab(i - 1),
-  })
-end
-
-config.key_tables = {
-  resize_pane = {
-    { key = "h",      action = act.AdjustPaneSize({ "Left", 1 }) },
-    { key = "j",      action = act.AdjustPaneSize({ "Down", 1 }) },
-    { key = "k",      action = act.AdjustPaneSize({ "Up", 1 }) },
-    { key = "l",      action = act.AdjustPaneSize({ "Right", 1 }) },
-    { key = "Escape", action = "PopKeyTable" },
-    { key = "Enter",  action = "PopKeyTable" },
-  },
-  move_tab = {
-    { key = "h",      action = act.MoveTabRelative(-1) },
-    { key = "j",      action = act.MoveTabRelative(-1) },
-    { key = "k",      action = act.MoveTabRelative(1) },
-    { key = "l",      action = act.MoveTabRelative(1) },
-    { key = "Escape", action = "PopKeyTable" },
-    { key = "Enter",  action = "PopKeyTable" },
-  },
 }
 
 -- Tab bar

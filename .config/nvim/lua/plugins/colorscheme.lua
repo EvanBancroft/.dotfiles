@@ -4,7 +4,6 @@ return {
     name = "rose-pine",
     lazy = false,
     config = {
-      variant = "moon",
       styles = {
         transparency = true,
       },
