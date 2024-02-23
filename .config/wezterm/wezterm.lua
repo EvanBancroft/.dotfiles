@@ -1,6 +1,7 @@
 -- Pull in the wezterm API
 local wezterm = require("wezterm")
 local act = wezterm.action
+local mux = wezterm.mux
 
 -- This will hold the configuration.
 local config = wezterm.config_builder()
@@ -15,6 +16,26 @@ local direction_keys = {
   j = "Down",
   k = "Up",
   l = "Right",
+}
+
+local M = {}
+
+M.action = {
+  RenameWorkspace = wezterm.action_callback(function(window, pane)
+    window:perform_action(
+      act.PromptInputLine({
+        description = "Rename workspace: ",
+        action = wezterm.action_callback(function(_, _, line)
+          if not line or line == "" then
+            return
+          end
+
+          mux.rename_workspace(mux.get_active_workspace(), line)
+        end),
+      }),
+      pane
+    )
+  end),
 }
 
 local function split_nav(resize_or_move, key)
@@ -112,7 +133,7 @@ config.keys = {
   { key = "s",          mods = "LEADER",      action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
   { key = "v",          mods = "LEADER",      action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
   { key = "q",          mods = "LEADER",      action = act.CloseCurrentPane({ confirm = true }) },
-  { key = "m",          mods = "LEADER",      action = act.TogglePaneZoomState },
+  { key = "z",          mods = "LEADER",      action = act.TogglePaneZoomState },
   { key = "o",          mods = "LEADER",      action = act.RotatePanes("Clockwise") },
 
   split_nav("move", "h"),
@@ -162,6 +183,9 @@ config.keys = {
 
   -- Lastly, workspace
   { key = "w", mods = "LEADER",       action = act.ShowLauncherArgs({ flags = "FUZZY|WORKSPACES" }) },
+  { key = "n", mods = "LEADER",       action = act.SwitchWorkspaceRelative(1) },
+  { key = "p", mods = "LEADER",       action = act.SwitchWorkspaceRelative(-1) },
+  { key = "r", mods = "LEADER",       action = M.action.RenameWorkspace },
 }
 
 -- Tab bar
@@ -179,12 +203,13 @@ wezterm.on("update-status", function(window, pane)
     stat_color = "#7dcfff"
   end
   if window:leader_is_active() then
-    stat = "LDR"
+    stat = "ldr"
     stat_color = "#bb9af7"
   end
 
   -- Current working directory
   local basename = function(s)
+    s = tostring(s)
     -- Nothing a little regex can't fix
     return string.gsub(s, "(.*[/\\])(.*)", "%2")
   end
