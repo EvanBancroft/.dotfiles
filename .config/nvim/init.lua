@@ -18,6 +18,7 @@ local opts = {}
 require("lazy").setup("plugins")
 
 require("vim-options")
+require("react-shenanigans")
 
 vim.o.termguicolors = true
 vim.cmd("colorscheme rose-pine")

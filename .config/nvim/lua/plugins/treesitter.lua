@@ -1,11 +1,13 @@
 return {
   "nvim-treesitter/nvim-treesitter",
   build = ":TSUpdate",
+  dependencies = { { "windwp/nvim-ts-autotag" } },
   config = function()
     require("nvim-treesitter.configs").setup({
       -- A list of parser names, or "all" (the five listed parsers should always be installed)
       ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "javascript", "typescript", "elixir" },
       indent = { enable = true },
+      autotag = { enable = true },
       -- Install parsers synchronously (only applied to `ensure_installed`)
       sync_install = false,
 
