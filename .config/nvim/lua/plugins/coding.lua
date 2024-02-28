@@ -48,4 +48,12 @@ return {
       vim.keymap.set("n", "<leader><leader>l", splits.swap_buf_right)
     end,
   },
+  {
+    "mbbill/undotree",
+    cmd = "UndotreeToggle",
+    lazy = false,
+    config = function()
+      vim.keymap.set("n", "<leader>u", "<cmd>UndotreeToggle<CR>")
+    end,
+  },
 }
