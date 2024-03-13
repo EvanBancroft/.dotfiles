@@ -84,6 +84,7 @@ return {
       lsp_zero.on_attach(function(client, bufnr)
         -- see :help lsp-zero-keybindings
         -- to learn the available actions
+
         local opts = { buffer = bufnr, remap = false }
 
         vim.keymap.set("n", "gd", function()
@@ -117,6 +118,12 @@ return {
         --   vim.lsp.buf.signature_help()
         -- end, opts)
       end)
+
+      -- require("lspconfig").tsserver.setup({
+      --   on_attach = function(client, bufnr)
+      --     require("workspace-diagnostics").populate_workspace_diagnostics(client, bufnr)
+      --   end,
+      -- })
 
       require("mason-lspconfig").setup({
         ensure_installed = { "tsserver", "elixirls" },
