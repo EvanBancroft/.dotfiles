@@ -48,5 +48,6 @@ return {
 		{ "<leader>fc", "<cmd>Telescope commands<CR>", desc = "Commands" },
 		{ "<leader>fC", "<cmd>Telescope colorscheme<CR>", desc = "Colorscheme" },
 		{ "<leader>fh", "<cmd>Telescope find_files hidden=true<CR>", desc = "Hidden Files" },
+		{ "<leader>fg", "<cmd>Telescope git_status<CR>", desc = "Git Files" },
 	},
 }
