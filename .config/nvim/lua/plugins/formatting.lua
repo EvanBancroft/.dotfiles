@@ -41,15 +41,19 @@ return {
 			lint.linters_by_ft = {
 				javascript = {
 					"eslint_d",
+					"rustywind",
 				},
 				typescript = {
 					"eslint_d",
+					"rustywind",
 				},
 				javascriptreact = {
 					"eslint_d",
+					"rustywind",
 				},
 				typescriptreact = {
 					"eslint_d",
+					"rustywind",
 				},
 				elixir = {
 					"mix",
