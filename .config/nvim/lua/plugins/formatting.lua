@@ -82,10 +82,10 @@ return {
 			formatters_by_ft = {
 				lua = { "stylua" },
 				python = { "isort", "black" },
-				javascript = { { "prettierd", "prettier" } },
-				typescript = { { "prettierd", "prettier" } },
-				javascriptreact = { { "prettierd", "prettier" } },
-				typescriptreact = { { "prettierd", "prettier" } },
+				javascript = { { "prettierd", "prettier" }, "rustywind" },
+				typescript = { { "prettierd", "prettier" }, "rustywind" },
+				javascriptreact = { { "prettierd", "prettier" }, "rustywind" },
+				typescriptreact = { { "prettierd", "prettier" }, "rustywind" },
 				elixir = { "mix" },
 			},
 			-- Set up format-on-save
