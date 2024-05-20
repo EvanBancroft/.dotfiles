@@ -37,7 +37,6 @@ return {
 			-- And you can configure cmp even more, if you want to.
 			local cmp = require("cmp")
 			local cmp_action = lsp_zero.cmp_action()
-			local luasnip = require("luasnip")
 
 			cmp.setup({
 				formatting = lsp_zero.cmp_format(),
@@ -47,19 +46,16 @@ return {
 					["<C-d>"] = cmp.mapping.scroll_docs(4),
 					["<C-f>"] = cmp_action.luasnip_jump_forward(),
 					["<C-b>"] = cmp_action.luasnip_jump_backward(),
-					["<Tab>"] = cmp.mapping(function(fallback)
-						if cmp.visible() then
-							cmp.confirm({ behavior = cmp.ConfirmBehavior.Insert, select = true })
-						-- elseif require("copilot.suggestion").is_visible() then
-						--   require("copilot.suggestion").accept()
-						elseif luasnip.expand_or_locally_jumpable() then
-							luasnip.expand_or_jump()
-						elseif has_words_before() then
-							cmp.complete()
-						else
-							fallback()
-						end
-					end, { "i", "s" }),
+
+					["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+					["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+					["<C-y>"] = cmp.mapping(
+						cmp.mapping.confirm({
+							behavior = cmp.ConfirmBehavior.Insert,
+							select = true,
+						}),
+						{ "i", "c" }
+					),
 				}),
 			})
 		end,
