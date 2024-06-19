@@ -1,58 +1,59 @@
-local colors = {
-  black = "#16161D",
-  white = "#DCD7BA",
-  red = "#C34043",
-  green = "#76946A",
-  blue = "#7E9CD8",
-  yellow = "#E6C384",
-  gray_500 = "#454559", -- 500
-  gray_400 = "#9D9DB3", -- 400
-  gray_300 = "#6B6B8A", -- 300
-  gray_200 = "#9D9DB3", -- 200
-}
-
-local theme = {
-  normal = {
-    a = { bg = colors.green, fg = colors.black, gui = "bold" },
-    b = { bg = colors.gray_400, fg = colors.gray_500 },
-    c = { bg = colors.gray_500, fg = colors.gray_400 },
-  },
-  insert = {
-    a = { bg = colors.blue, fg = colors.black, gui = "bold" },
-    b = { bg = colors.gray_400, fg = colors.gray_300 },
-    c = { bg = colors.gray_500, fg = colors.gray_400 },
-  },
-  visual = {
-    a = { bg = colors.red, fg = colors.black, gui = "bold" },
-    b = { bg = colors.gray_400, fg = colors.gray_300 },
-    c = { bg = colors.gray_500, fg = colors.gray_400 },
-  },
-  replace = {
-    a = { bg = colors.yellow, fg = colors.black, gui = "bold" },
-    b = { bg = colors.gray_400, fg = colors.gray_300 },
-    c = { bg = colors.gray_500, fg = colors.gray_400 },
-  },
-  command = {
-    a = { bg = colors.white, fg = colors.black, gui = "bold" },
-    b = { bg = colors.gray_400, fg = colors.gray_300 },
-    c = { bg = colors.gray_500, fg = colors.gray_400 },
-  },
-  inactive = {
-    a = { bg = colors.gray_500, fg = colors.black, gui = "bold" },
-    b = { bg = colors.gray_400, fg = colors.gray_300 },
-    c = { bg = colors.gray_500, fg = colors.gray_400 },
-  },
-}
-
 return {
-  "nvim-lualine/lualine.nvim",
-  dependencies = { "nvim-tree/nvim-web-devicons" },
-  config = function()
-    require("lualine").setup({
-      options = {
-        --    theme = theme,
-        disabled_filetypes = { "neo-tree" },
-      },
-    })
-  end,
+	"nvim-lualine/lualine.nvim",
+	dependencies = { "nvim-tree/nvim-web-devicons" },
+	lazy = false,
+	priority = 999,
+	config = function()
+		local git_blame = require("gitblame")
+		-- This disables showing of the blame text next to the cursor
+		vim.g.gitblame_display_virtual_text = 0
+
+		require("lualine").setup({
+			options = {
+				--    theme = theme,
+				disabled_filetypes = { "neo-tree", "oil", "alpha" },
+			},
+			sections = {
+				lualine_a = { "mode" },
+				lualine_b = { "branch", "diff", "diagnostics" },
+				lualine_c = {
+					{ git_blame.get_current_blame_text, cond = git_blame.is_blame_text_available },
+				},
+
+				lualine_x = { "encoding", "filetype" },
+				lualine_y = { "progress" },
+				lualine_z = { "location" },
+			},
+			inactive_sections = {
+				lualine_a = { "mode" },
+				lualine_b = { "branch", "diff", "diagnostics" },
+				lualine_c = {},
+				lualine_x = { "encoding", "filetype" },
+				lualine_y = { "progress" },
+				lualine_z = { "location" },
+			},
+			winbar = {
+				lualine_a = {},
+				lualine_b = {
+					{ "filetype", icon_only = true, icon = { align = "left" } },
+					{ "filename", file_status = false, path = 1 },
+				},
+				lualine_c = {},
+				lualine_x = {},
+				lualine_y = {},
+				lualine_z = {},
+			},
+			inactive_winbar = {
+				lualine_a = {},
+				lualine_b = {
+					{ "filetype", icon_only = true, icon = { align = "left" } },
+					{ "filename", file_status = false, path = 1 },
+				},
+				lualine_c = {},
+				lualine_x = {},
+				lualine_y = {},
+				lualine_z = {},
+			},
+		})
+	end,
 }
