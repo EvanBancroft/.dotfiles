@@ -10,8 +10,9 @@ return {
 
 		require("lualine").setup({
 			options = {
-				--    theme = theme,
 				disabled_filetypes = { "neo-tree", "oil", "alpha" },
+				component_separators = "│",
+				theme = "rose-pine-alt",
 			},
 			sections = {
 				lualine_a = { "mode" },

@@ -1,7 +1,6 @@
 return {
 	{
 		"lewis6991/gitsigns.nvim",
-		lazy = true,
 		config = function()
 			require("gitsigns").setup()
 		end,
@@ -9,7 +8,6 @@ return {
 	{
 		"tpope/vim-fugitive",
 
-		lazy = true,
 		config = function()
 			vim.keymap.set("n", "<leader>gs", vim.cmd.Git)
 			vim.keymap.set("n", "<leader>gb", "<cmd>Git blame<cr>")
@@ -17,7 +15,6 @@ return {
 	},
 	{
 		"kdheepak/lazygit.nvim",
-		lazy = true,
 		dependencies = {
 			"nvim-telescope/telescope.nvim",
 			"nvim-lua/plenary.nvim",
@@ -28,5 +25,12 @@ return {
 			vim.keymap.set("n", "<leader>lg", "<cmd>LazyGit<cr>")
 		end,
 	},
-	{ "f-person/git-blame.nvim", lazy = true },
+	{
+		"f-person/git-blame.nvim",
+		config = function()
+			require("gitblame").setup({
+				date_format = "%r",
+			})
+		end,
+	},
 }
