@@ -5,6 +5,10 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+export PATH=~/bin:$PATH
+
+
+
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Set the directory we want to store zinit and plugins
@@ -76,6 +80,7 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 # Aliases 
 alias ls='ls --color'
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias oo='cd $HOME/library/Mobile\ Documents/iCloud~md~obsidian/Documents/v2.0.1'
 
 
 # Shell integrations

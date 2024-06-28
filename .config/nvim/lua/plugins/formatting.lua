@@ -1,38 +1,4 @@
--- return {
---
---   "nvimtools/none-ls.nvim",
---   config = function()
---     local null_ls = require("null-ls")
---     local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
---     null_ls.setup({
---       sources = {
---         null_ls.builtins.formatting.stylua,
---         null_ls.builtins.formatting.prettier,
---         --        null_ls.builtins.diagnostics.eslint_d,
---       },
---
---       -- you can reuse a shared lspconfig on_attach callback here
---       on_attach = function(client, bufnr)
---         if client.supports_method("textDocument/formatting") then
---           vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
---           vim.api.nvim_create_autocmd("BufWritePre", {
---             group = augroup,
---             buffer = bufnr,
---             callback = function()
---               -- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
---               -- on later neovim version, you should use vim.lsp.buf.format({ async = false }) instead
---               vim.lsp.buf.format({ async = false })
---             end,
---           })
---         end
---       end,
---     })
---
---     vim.keymap.set("n", "<leader>gf", vim.lsp.buf.format, {})
---   end,
--- }
---
-return {
+return({
 	{
 		"mfussenegger/nvim-lint",
 		config = function()
@@ -65,17 +31,6 @@ return {
 		"stevearc/conform.nvim",
 		event = { "BufWritePre" },
 		cmd = { "ConformInfo" },
-		-- keys = {
-		--   {
-		--     -- Customize or remove this keymap to your liking
-		--     "<leader>f",
-		--     function()
-		--       require("conform").format({ async = true, lsp_fallback = true })
-		--     end,
-		--     mode = "",
-		--     desc = "Format buffer",
-		--   },
-		-- },
 		-- Everything in opts will be passed to setup()
 		opts = {
 			-- Define your formatters
@@ -87,6 +42,22 @@ return {
 				javascriptreact = { { "prettierd", "prettier" }, "rustywind" },
 				typescriptreact = { { "prettierd", "prettier" }, "rustywind" },
 				elixir = { "mix" },
+				bash = { "shfmt" },
+				sh = { "shfmt" },
+				fish = { "fish_indent" },
+				go = { "goimports", "gofumpt", "goimports-reviser" },
+				vue = { { "prettierd", "prettier" } },
+				css = { { "prettierd", "prettier" } },
+				scss = { { "prettierd", "prettier" } },
+				less = { { "prettierd", "prettier" } },
+				html = { { "prettierd", "prettier" } },
+				json = { { "prettierd", "prettier" } },
+				jsonc = { { "prettierd", "prettier" } },
+				yaml = { { "prettierd", "prettier" } },
+				markdown = { { "prettierd", "prettier" } },
+				["markdown.mdx"] = { { "prettierd", "prettier" } },
+				graphql = { { "prettierd", "prettier" } },
+				handlebars = { { "prettierd", "prettier" } },
 			},
 			-- Set up format-on-save
 			format_on_save = { timeout_ms = 500, lsp_fallback = true },
@@ -102,4 +73,4 @@ return {
 			vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
 		end,
 	},
-}
+})
