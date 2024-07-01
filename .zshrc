@@ -94,3 +94,5 @@ export NVM_DIR="$HOME/.nvm"
 # Shopify Hydrogen alias to local projects
 alias h2='$(npm prefix -s)/node_modules/.bin/shopify hydrogen'
 
+
+export PATH=$PATH:/Users/evanbancroft/.spicetify

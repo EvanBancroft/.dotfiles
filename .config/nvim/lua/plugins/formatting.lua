@@ -1,4 +1,4 @@
-return({
+return {
 	{
 		"mfussenegger/nvim-lint",
 		config = function()
@@ -73,4 +73,4 @@ return({
 			vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
 		end,
 	},
-})
+}
