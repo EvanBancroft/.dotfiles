@@ -21,6 +21,10 @@ return {
 					"eslint_d",
 					"rustywind",
 				},
+				astro = {
+					"eslint_d",
+					"rustywind",
+				},
 				elixir = {
 					"mix",
 				},
@@ -41,7 +45,11 @@ return {
 				typescript = { { "prettierd", "prettier" }, "rustywind" },
 				javascriptreact = { { "prettierd", "prettier" }, "rustywind" },
 				typescriptreact = { { "prettierd", "prettier" }, "rustywind" },
+				astro = { { "prettierd", "prettier" }, "rustywind" },
 				elixir = { "mix" },
+				eelixir = { "mix" },
+				heex = { "mix" },
+				surface = { "mix" },
 				bash = { "shfmt" },
 				sh = { "shfmt" },
 				fish = { "fish_indent" },
