@@ -32,6 +32,17 @@ return {
 			vim.keymap.set("n", "<leader>u", "<cmd>UndotreeToggle<CR>")
 		end,
 	},
+	{
+		"rachartier/tiny-code-action.nvim",
+		dependencies = {
+			{ "nvim-lua/plenary.nvim" },
+			{ "nvim-telescope/telescope.nvim" },
+		},
+		event = "LspAttach",
+		config = function()
+			require("tiny-code-action").setup()
+		end,
+	},
 	-- {
 	-- 	"luckasRanarison/tailwind-tools.nvim",
 	-- 	dependencies = { "nvim-treesitter/nvim-treesitter" },
