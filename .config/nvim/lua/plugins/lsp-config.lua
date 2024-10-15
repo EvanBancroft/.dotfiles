@@ -76,6 +76,8 @@ return {
 				-- to learn the available actions
 				local opts = { buffer = bufnr, remap = false }
 
+				require("workspace-diagnostics").populate_workspace_diagnostics(client, bufnr)
+
 				vim.keymap.set("n", "gd", function()
 					vim.lsp.buf.definition()
 				end, opts)
@@ -106,7 +108,7 @@ return {
 			end)
 
 			require("mason-lspconfig").setup({
-				ensure_installed = { "tsserver", "elixirls" },
+				ensure_installed = { "ts_ls", "elixirls", "astro" },
 				handlers = {
 					lsp_zero.default_setup,
 					lua_ls = function()

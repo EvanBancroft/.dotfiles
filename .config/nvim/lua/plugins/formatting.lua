@@ -28,6 +28,7 @@ return {
 				elixir = {
 					"mix",
 				},
+				go = { "golangcilint" },
 			}
 		end,
 	},
@@ -41,11 +42,11 @@ return {
 			formatters_by_ft = {
 				lua = { "stylua" },
 				python = { "isort", "black" },
-				javascript = { { "prettierd", "prettier" }, "rustywind" },
-				typescript = { { "prettierd", "prettier" }, "rustywind" },
-				javascriptreact = { { "prettierd", "prettier" }, "rustywind" },
-				typescriptreact = { { "prettierd", "prettier" }, "rustywind" },
-				astro = { { "prettierd", "prettier" }, "rustywind" },
+				javascript = { "prettier", "rustywind" },
+				typescript = { "prettier", "rustywind" },
+				javascriptreact = { "prettier", "rustywind" },
+				typescriptreact = { "prettier", "rustywind" },
+				astro = { "prettierd", "prettier", "rustywind" },
 				elixir = { "mix" },
 				eelixir = { "mix" },
 				heex = { "mix" },
