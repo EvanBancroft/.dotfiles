@@ -105,7 +105,7 @@ config.color_schemes = {
 
 config.color_scheme = "rose-pine"
 
-config.font = wezterm.font("JetBrains Mono")
+config.font = wezterm.font("JetBrainsMono Nerd Font")
 
 config.window_background_opacity = 0.95
 config.macos_window_background_blur = 40
