@@ -117,8 +117,8 @@ if.app-id = 'md.obsidian'
 run = 'move-node-to-workspace 5' # mnemonics N - Neovim
 
 [workspace-to-monitor-force-assignment]
-4 = '^built-in retina display$'
-3 = ['secondary', 'dell']
+3 = '^built-in retina display$'
+4 = ['secondary', 'dell']
 
 
 
