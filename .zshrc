@@ -8,7 +8,6 @@ fi
 export PATH=~/bin:$PATH
 
 
-
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Set the directory we want to store zinit and plugins
@@ -55,6 +54,7 @@ fi
 bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
 bindkey '^y' autosuggest-accept
+bindkey -s ^f "tmux-sessionizer\n"
 
 
 # History
@@ -96,6 +96,6 @@ alias h2='$(npm prefix -s)/node_modules/.bin/shopify hydrogen'
 
 alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
 
-
+export EDITOR="nvim"
 
 export PATH=$PATH:/Users/evanbancroft/.spicetify
