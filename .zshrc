@@ -54,7 +54,7 @@ fi
 bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
 bindkey '^y' autosuggest-accept
-bindkey -s ^f "tmux-sessionizer\n"
+bindkey -s ^f "tmux display-popup -E "tmux-sessionizer"\n"
 
 
 # History
