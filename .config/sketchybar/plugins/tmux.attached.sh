@@ -4,6 +4,8 @@ session_raw=$(tmux list-sessions -F '#{session_name}:#{session_path}' -f "#{==:#
 session_name=$(echo "$session_raw" | cut -d ":" -f 1)
 session_path=$(echo "$session_raw" | cut -d ":" -f 2)
 
+echo "$SENDER"
+
 if [ "$SENDER" = "tmux_session_update" ]; then
   if [ "$session_name" = "default" ]; then
     sketchybar --set "$NAME" drawing=off 
