@@ -50,11 +50,19 @@ else
   export EDITOR='nvim'
 fi
 
+silent-sessionizer-command() {
+    zle kill-whole-line
+    tmux display-popup -E "tmux-sessionizer"
+    zle reset-prompt
+}
+zle -N silent-sessionizer-command
+
+
 # Keybindings
 bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
 bindkey '^y' autosuggest-accept
-bindkey -s ^f "tmux display-popup -E "tmux-sessionizer"\n"
+bindkey '^f' silent-sessionizer-command
 
 
 # History
@@ -99,3 +107,5 @@ alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
 export EDITOR="nvim"
 
 export PATH=$PATH:/Users/evanbancroft/.spicetify
+
+. $HOME/.asdf/asdf.sh
