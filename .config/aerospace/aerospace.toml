@@ -93,28 +93,28 @@ run = 'move-node-to-workspace 1'
 
 # IDE / Code editor
 [[on-window-detected]]
-if.app-id = 'com.github.wez.wezterm'
-run = 'move-node-to-workspace 2' # mnemonics N - Neovim
-
-# Music App
-[[on-window-detected]]
-if.app-id = 'com.spotify.client'
-run = 'move-node-to-workspace 3' # mnemonics S - Secondary Monitor
-
-# Company Messaging App
-[[on-window-detected]]
-if.app-id = 'com.tinyspeck.slackmacgap'
-run = 'move-node-to-workspace 3' # mnemonics S - Secondary Monitor
+if.app-id = 'com.mitchellh.ghostty'
+run = 'move-node-to-workspace 2'
 
 # Company Design App
 [[on-window-detected]]
 if.app-id = 'com.figma.Desktop'
-run = 'move-node-to-workspace 4' # mnemonics N - Neovim
+run = 'move-node-to-workspace 3' 
 
-# Notes Ap
+# Music App
+[[on-window-detected]]
+if.app-id = 'com.spotify.client'
+run = 'move-node-to-workspace 4'
+
+# Company Messaging App
+[[on-window-detected]]
+if.app-id = 'com.tinyspeck.slackmacgap'
+run = 'move-node-to-workspace 4'
+
+# Notes App
 [[on-window-detected]]
 if.app-id = 'md.obsidian'
-run = 'move-node-to-workspace 5' # mnemonics N - Neovim
+run = 'move-node-to-workspace 5'
 
 [workspace-to-monitor-force-assignment]
 3 = '^built-in retina display$'
