@@ -1,6 +1,3 @@
-# Keybinds
-keybind = ctrl+g>n=toggle_quick_terminal
-
 # Theme
 theme = rose-pine
 macos-titlebar-style = hidden
