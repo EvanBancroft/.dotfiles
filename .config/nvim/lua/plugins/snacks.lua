@@ -1,3 +1,5 @@
+vim.api.nvim_set_hl(0, "SnacksIndent", { fg = "#313244" })
+
 return {
 	"folke/snacks.nvim",
 	priority = 1000,
@@ -69,6 +71,27 @@ return {
 				Snacks.lazygit()
 			end,
 			desc = "Lazygit",
+		},
+		{
+			"<leader>lf",
+			function()
+				Snacks.lazygit.log_file()
+			end,
+			desc = "Lazygit Current File History",
+		},
+		{
+			"<leader>z",
+			function()
+				Snacks.zen()
+			end,
+			desc = "Toggle Zen Mode",
+		},
+		{
+			"<leader>Z",
+			function()
+				Snacks.zen.zoom()
+			end,
+			desc = "Toggle Zoom",
 		},
 	},
 }
