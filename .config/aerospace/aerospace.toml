@@ -31,7 +31,7 @@ default-root-container-layout = 'tiles'
 # Possible values: horizontal|vertical|auto
 # 'auto' means: wide monitor (anything wider than high) gets horizontal orientation,
 #               tall monitor (anything higher than wide) gets vertical orientation
-default-root-container-orientation = 'auto'
+default-root-container-orientation = 'horizontal'
 
 # Possible values: (qwerty|dvorak)
 # See https://nikitabobko.github.io/AeroSpace/guide#key-mapping
@@ -85,6 +85,18 @@ alt-shift-6 = 'move-node-to-workspace 6'
 alt-tab = 'workspace-back-and-forth'
 alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 
+alt-shift-c = 'reload-config'
+
+alt-r = 'mode resize'
+
+[mode.resize.binding]
+h = 'resize width -50'
+j = 'resize height +50'
+k = 'resize height -50'
+l = 'resize width +50'
+enter = 'mode main'
+esc = 'mode main'
+
 # automations
 # Browser
 [[on-window-detected]]
@@ -119,22 +131,3 @@ run = 'move-node-to-workspace 5'
 [workspace-to-monitor-force-assignment]
 3 = '^built-in retina display$'
 4 = ['secondary', 'dell']
-
-
-
-# 'service' binding mode declaration.
-# See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
-[mode.service.binding]
-esc = ['reload-config', 'mode main']
-r = ['flatten-workspace-tree', 'mode main'] # reset layout
-#s = ['layout sticky tiling', 'mode main'] # sticky is not yet supported https://github.com/nikitabobko/AeroSpace/issues/2
-f = [
-    'layout floating tiling',
-    'mode main',
-] # Toggle between floating and tiling layout
-backspace = ['close-all-windows-but-current', 'mode main']
-
-alt-shift-h = ['join-with left', 'mode main']
-alt-shift-j = ['join-with down', 'mode main']
-alt-shift-k = ['join-with up', 'mode main']
-alt-shift-l = ['join-with right', 'mode main']
