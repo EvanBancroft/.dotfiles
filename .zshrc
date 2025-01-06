@@ -87,7 +87,7 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
 # Aliases 
 alias ls='ls --color'
-alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias dt='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias oo='cd $HOME/library/Mobile\ Documents/iCloud~md~obsidian/Documents/v2.0.1'
 
 
