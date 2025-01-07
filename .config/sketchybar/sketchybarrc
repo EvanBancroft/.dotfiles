@@ -9,9 +9,9 @@ ITEM_DIR="$CONFIG_DIR/items"
 sketchybar --animate sin 30 --bar y_offset=10 y_offset=0
 
 sketchybar --bar height=37        \
-                 margin=2   \
-                 y_offset=0 \
-                 corner_radius=10 \
+                 margin=20   \
+                 y_offset=10 \
+                 corner_radius=12 \
                  blur_radius=9   \
                  blur_radius=100 \
                  popup.blur_radius=50 \
