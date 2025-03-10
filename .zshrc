@@ -1,3 +1,5 @@
+# Add deno completions to search path
+if [[ ":$FPATH:" != *":/Users/evanbancroft/.zsh/completions:"* ]]; then export FPATH="/Users/evanbancroft/.zsh/completions:$FPATH"; fi
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -109,3 +111,10 @@ export EDITOR="nvim"
 export PATH=$PATH:/Users/evanbancroft/.spicetify
 
 . $HOME/.asdf/asdf.sh
+. "/Users/evanbancroft/.deno/env"
+# bun completions
+[ -s "/Users/evanbancroft/.bun/_bun" ] && source "/Users/evanbancroft/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

@@ -28,6 +28,8 @@ return {
 		dependencies = {
 			-- Automatically install LSPs and related tools to stdpath for Neovim
 			{ "williamboman/mason.nvim", config = true },
+			"saghen/blink.cmp",
+
 			"williamboman/mason-lspconfig.nvim",
 			"WhoIsSethDaniel/mason-tool-installer.nvim",
 
@@ -46,7 +48,9 @@ return {
 			-- Allows extra capabilities provided by nvim-cmp
 			"hrsh7th/cmp-nvim-lsp",
 		},
-		config = function()
+		config = function(_, opts)
+			local lspconfig = require("lspconfig")
+
 			vim.api.nvim_create_autocmd("LspAttach", {
 				callback = function(event)
 					local map = function(keys, func, desc, mode)
@@ -100,6 +104,13 @@ return {
 				},
 			}
 
+			for server, config in pairs(servers) do
+				-- passing config.capabilities to blink.cmp merges with the capabilities in your
+				-- `opts[server].capabilities, if you've defined it
+				config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
+				lspconfig[server].setup(config)
+			end
+
 			require("mason").setup()
 
 			-- You can add other tools here that you want Mason to install
@@ -113,6 +124,7 @@ return {
 				"shfmt",
 				"bash-language-server",
 				"astro-language-server",
+				"eslint_d",
 			})
 			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
@@ -130,5 +142,10 @@ return {
 				},
 			})
 		end,
+	},
+	{
+		"davidmh/mdx.nvim",
+		config = true,
+		dependencies = { "nvim-treesitter/nvim-treesitter" },
 	},
 }

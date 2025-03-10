@@ -21,4 +21,5 @@ require("vim-options")
 require("react-shenanigans")
 
 vim.o.termguicolors = true
-vim.cmd([[colorscheme rose-pine]])
+
+vim.cmd("colorscheme rose-pine")

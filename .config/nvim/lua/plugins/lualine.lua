@@ -11,17 +11,18 @@ return {
 		require("lualine").setup({
 			options = {
 				disabled_filetypes = { "neo-tree", "oil", "alpha" },
-				component_separators = "│",
-				theme = "rose-pine-alt",
+				component_separators = "|",
+				section_separators = "",
+				theme = "rose-pine",
 			},
 			sections = {
 				lualine_a = { "mode" },
-				lualine_b = { "branch", "diff", "diagnostics" },
+				lualine_b = { "diff", "diagnostics", { "filename", file_status = false, path = 1 } },
 				lualine_c = {
 					{ git_blame.get_current_blame_text, cond = git_blame.is_blame_text_available },
 				},
 
-				lualine_x = { "encoding", "filetype" },
+				lualine_x = { { "filetype", icon_only = true, icon = { align = "left" } } },
 				lualine_y = { "progress" },
 				lualine_z = { "location" },
 			},
@@ -32,28 +33,6 @@ return {
 				lualine_x = { "encoding", "filetype" },
 				lualine_y = { "progress" },
 				lualine_z = { "location" },
-			},
-			winbar = {
-				lualine_a = {},
-				lualine_b = {
-					{ "filetype", icon_only = true, icon = { align = "left" } },
-					{ "filename", file_status = false, path = 1 },
-				},
-				lualine_c = {},
-				lualine_x = {},
-				lualine_y = {},
-				lualine_z = {},
-			},
-			inactive_winbar = {
-				lualine_a = {},
-				lualine_b = {
-					{ "filetype", icon_only = true, icon = { align = "left" } },
-					{ "filename", file_status = false, path = 1 },
-				},
-				lualine_c = {},
-				lualine_x = {},
-				lualine_y = {},
-				lualine_z = {},
 			},
 		})
 	end,

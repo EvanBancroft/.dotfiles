@@ -1,28 +1,29 @@
 -- Define a function to move cursor to a match in the styles file
 local function move_cursor_to_match(name)
-  -- Open the styles file
-  local styles_file = vim.fn.expand("%:p:h") .. "/styles.*"
-  local files = vim.fn.glob(styles_file, true, true)
+	-- Open the styles file
+	local styles_file = vim.fn.expand("%:p:h") .. "/{styles.*,*.module.css}"
 
-  for _, file in ipairs(files) do
-    -- Open each matching file in a new buffer
-    vim.cmd("e " .. file)
+	local files = vim.fn.glob(styles_file, true, true)
 
-    -- Perform the search using Vim's command-line mode
-    local search_cmd = "silent! /\\<" .. name .. "\\>"
-    vim.cmd(search_cmd)
+	for _, file in ipairs(files) do
+		-- Open each matching file in a new buffer
+		vim.cmd("e " .. file)
 
-    vim.cmd("norm! zz")
-  end
+		-- Perform the search using Vim's command-line mode
+		local search_cmd = "silent! /\\<" .. name .. "\\>"
+		vim.cmd(search_cmd)
+
+		vim.cmd("norm! zz")
+	end
 end
 
 -- Define a function to open the styles file for the current component
 function Open_styles_file()
-  -- Get the name under the cursor
-  local name = vim.fn.expand("<cword>")
+	-- Get the name under the cursor
+	local name = vim.fn.expand("<cword>")
 
-  -- Move cursor to the match in the styles file
-  move_cursor_to_match(name)
+	-- Move cursor to the match in the styles file
+	move_cursor_to_match(name)
 end
 
 -- Bind the function to a keymap

@@ -9,6 +9,7 @@ export WHITE=0xffffffff
 
 # -- Gray Scheme --
 export BAR_COLOR=0xff000000
+export BORDER_COLOR=0xff999999
 export ITEM_BG_COLOR=0xff000000
 export ACCENT_COLOR=0xffffffff
 
@@ -23,7 +24,7 @@ export ACCENT_COLOR=0xffffffff
 # export ITEM_BG_COLOR=0xff591221
 # export ACCENT_COLOR=0xffff2453
 
-# -- Blue Scheme --- 
+# -- Blue Scheme ---
 # export BAR_COLOR=0xff021254
 # export ITEM_BG_COLOR=0xff093aa8
 # export ACCENT_COLOR=0xff15bdf9
@@ -32,7 +33,6 @@ export ACCENT_COLOR=0xffffffff
 # export BAR_COLOR=0xff003315
 # export ITEM_BG_COLOR=0xff008c39
 # export ACCENT_COLOR=0xff1dfca1
-
 
 # -- Orange Scheme --
 # export BAR_COLOR=0xff381c02
