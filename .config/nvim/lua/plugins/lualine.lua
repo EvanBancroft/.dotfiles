@@ -28,9 +28,9 @@ return {
 			},
 			inactive_sections = {
 				lualine_a = { "mode" },
-				lualine_b = { "branch", "diff", "diagnostics" },
+				lualine_b = { "diff", "diagnostics", { "filename", file_status = false, path = 1 } },
 				lualine_c = {},
-				lualine_x = { "encoding", "filetype" },
+				lualine_x = { { "filetype", icon_only = true, icon = { align = "left" } } },
 				lualine_y = { "progress" },
 				lualine_z = { "location" },
 			},

@@ -51,12 +51,16 @@ vim.keymap.set("n", "<leader>gf", vim.lsp.buf.format, {})
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
+vim.keymap.set("n", "<leader>px", ":PxToRemCursor<CR>", { noremap = true })
+vim.keymap.set("n", "<leader>pxl", ":PxToRemLine<CR>", { noremap = true })
+
+vim.keymap.set("n", "<leader>ai", ":SupermavenStart<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>ao", ":SupermavenStop<CR>", { noremap = true, silent = true })
 --------------
 -- obsidian --
 --------------
 --
 -- >>> oo # from shell, navigate to vault (optional)
-
 -- navigate to vault
 vim.keymap.set(
 	"n",

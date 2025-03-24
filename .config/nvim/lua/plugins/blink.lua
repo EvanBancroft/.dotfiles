@@ -1,8 +1,21 @@
 return {
 	{
+		"saghen/blink.compat",
+		-- use the latest release, via version = '*', if you also use the latest release for blink.cmp
+		version = "*",
+		-- lazy.nvim will automatically load the plugin when it's required by blink.cmp
+		lazy = true,
+		-- make sure to set opts so that lazy.nvim calls blink.compat's setup
+		opts = {},
+	},
+	{
 		"saghen/blink.cmp",
 		-- optional: provides snippets for the snippet source
-		dependencies = { "rafamadriz/friendly-snippets", "L3MON4D3/LuaSnip" },
+		dependencies = {
+			"rafamadriz/friendly-snippets",
+			"L3MON4D3/LuaSnip",
+			"saghen/blink.compat",
+		},
 
 		-- use a release tag to download pre-built binaries
 		version = "*",
@@ -21,22 +34,18 @@ return {
 			keymap = { preset = "default" },
 
 			appearance = {
-				-- Sets the fallback highlight groups to nvim-cmp's highlight groups
-				-- Useful for when your theme doesn't support blink.cmp
-				-- Will be removed in a future release
-				use_nvim_cmp_as_default = true,
 				-- Set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
 				-- Adjusts spacing to ensure icons are aligned
 				nerd_font_variant = "mono",
 			},
 
-			-- nvim-cmp style menu
 			completion = {
-				documentation = {
-					auto_show = true,
-					auto_show_delay_ms = 500,
-				},
+				accept = { auto_brackets = { enabled = false } },
+
+				documentation = { auto_show = true, auto_show_delay_ms = 500 },
+
 				menu = {
+					-- nvim-cmp style menu
 					draw = {
 						columns = {
 							{ "label", "label_description", gap = 1 },
@@ -51,6 +60,12 @@ return {
 			sources = {
 				default = { "lsp", "path", "snippets", "buffer" },
 			},
+			-- (Default) Rust fuzzy matcher for typo resistance and significantly better performance
+			-- You may use a lua implementation instead by using `implementation = "lua"` or fallback to the lua implementation,
+			-- when the Rust fuzzy matcher is not available, by using `implementation = "prefer_rust"`
+			--
+			-- See the fuzzy documentation for more information
+			fuzzy = { implementation = "prefer_rust_with_warning" },
 		},
 		opts_extend = { "sources.default" },
 	},

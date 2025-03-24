@@ -20,7 +20,18 @@ return {
 	{
 		"pmizio/typescript-tools.nvim",
 		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-		opts = {},
+		opts = {
+			on_attach = function(client, bufnr)
+				client.server_capabilities.documentFormattingProvider = false
+				client.server_capabilities.documentRangeFormattingProvider = false
+			end,
+			settings = {
+				jsx_close_tag = {
+					enable = true,
+					filetypes = { "javascriptreact", "typescriptreact" },
+				},
+			},
+		},
 	},
 	{
 		-- Main LSP Configuration
@@ -50,6 +61,9 @@ return {
 		},
 		config = function(_, opts)
 			local lspconfig = require("lspconfig")
+			lspconfig.handlers = {
+				["tsserver"] = function() end, -- handled by typescript_tools.lua
+			}
 
 			vim.api.nvim_create_autocmd("LspAttach", {
 				callback = function(event)
@@ -92,6 +106,7 @@ return {
 			capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 
 			local servers = {
+				ts_ls = {},
 				gopls = {},
 				lua_ls = {
 					settings = {
@@ -142,10 +157,5 @@ return {
 				},
 			})
 		end,
-	},
-	{
-		"davidmh/mdx.nvim",
-		config = true,
-		dependencies = { "nvim-treesitter/nvim-treesitter" },
 	},
 }

@@ -43,6 +43,10 @@ return {
 			require("tiny-code-action").setup()
 		end,
 	},
+	{
+		"jsongerber/nvim-px-to-rem",
+		config = true,
+	},
 	-- {
 	-- 	"luckasRanarison/tailwind-tools.nvim",
 	-- 	dependencies = { "nvim-treesitter/nvim-treesitter" },
