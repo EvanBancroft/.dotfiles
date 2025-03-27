@@ -33,23 +33,7 @@ return {
 		end,
 	},
 	{
-		"rachartier/tiny-code-action.nvim",
-		dependencies = {
-			{ "nvim-lua/plenary.nvim" },
-			{ "nvim-telescope/telescope.nvim" },
-		},
-		event = "LspAttach",
-		config = function()
-			require("tiny-code-action").setup()
-		end,
-	},
-	{
 		"jsongerber/nvim-px-to-rem",
 		config = true,
 	},
-	-- {
-	-- 	"luckasRanarison/tailwind-tools.nvim",
-	-- 	dependencies = { "nvim-treesitter/nvim-treesitter" },
-	-- 	opts = {}, -- your configuration
-	-- },
 }

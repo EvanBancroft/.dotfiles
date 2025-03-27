@@ -1,11 +1,18 @@
 return {
 	{
 		"supermaven-inc/supermaven-nvim",
-		cmd = {
-			"SupermavenStart",
+		keys = {
+			{ "<leader>ai", "<cmd>SupermavenToggle<cr>", desc = "Supermaven Toggle" },
 		},
-		opts = {
-			ignore_filetypes = { "bigfile", "snacks_input", "snacks_notif" },
-		},
+		config = function()
+			require("supermaven-nvim").setup({
+				ignore_filetypes = { "bigfile", "snacks_input", "snacks_notif" },
+				keymaps = {
+					accept_suggestion = "<C-l>",
+					clear_suggestion = "<C-]>",
+					accept_word = nil,
+				},
+			})
+		end,
 	},
 }

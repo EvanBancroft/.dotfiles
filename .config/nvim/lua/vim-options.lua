@@ -39,14 +39,13 @@ vim.keymap.set("n", "<leader>Y", [["+Y]])
 
 vim.keymap.set("n", "Q", "<nop>")
 vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux display-popup -E tmux-sessionizer<CR>")
-vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
 
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 -- vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
 vim.keymap.set("n", "ss", ":write<CR>", { noremap = true, silent = true })
 
-vim.keymap.set("n", "<leader>gf", vim.lsp.buf.format, {})
+vim.keymap.set("n", "<leader>gf", vim.lsp.buf.format)
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
@@ -54,8 +53,6 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 vim.keymap.set("n", "<leader>px", ":PxToRemCursor<CR>", { noremap = true })
 vim.keymap.set("n", "<leader>pxl", ":PxToRemLine<CR>", { noremap = true })
 
-vim.keymap.set("n", "<leader>ai", ":SupermavenStart<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<leader>ao", ":SupermavenStop<CR>", { noremap = true, silent = true })
 --------------
 -- obsidian --
 --------------
@@ -68,7 +65,8 @@ vim.keymap.set(
 	":cd /Users/evanbancroft/Library/Mobile Documents/iCloud~md~obsidian/Documents/v2.0.1<cr>"
 )
 
-vim.opt.conceallevel = 2
+vim.opt.conceallevel = 0
+
 -- convert note to template and remove leading white space
 vim.keymap.set("n", "<leader>ot", ":ObsidianTemplate<cr>")
 

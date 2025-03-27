@@ -11,7 +11,6 @@ return {
 				javascriptreact = { "eslint_d" },
 				typescriptreact = { "eslint_d" },
 				astro = { "eslint_d" },
-				elixir = { "mix" },
 				go = { "golangcilint" },
 				css = { "stylelint" },
 			}
