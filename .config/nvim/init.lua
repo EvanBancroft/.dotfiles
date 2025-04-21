@@ -17,8 +17,10 @@ local opts = {}
 
 require("lazy").setup("plugins")
 
-require("vim-options")
+require("keymaps")
+require("lsp")
 require("react-shenanigans")
+require("vim-options")
 
 vim.o.termguicolors = true
 

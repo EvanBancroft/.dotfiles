@@ -38,6 +38,33 @@ return {
 			},
 			{ "z=", "<cmd>FzfLua spell_suggest<cr>", desc = "Spelling suggestions" },
 		},
-		opts = {},
+		opts = function()
+			return {
+				winopts = {
+					height = 0.7,
+					width = 0.55,
+					preview = {
+						scrollbar = false,
+						vertical = "up:40%",
+					},
+				},
+				previewers = {
+					codeaction = { toggle_behavior = "extend", previewer = false },
+				},
+				lsp = {
+					code_actions = {
+						winopts = {
+							width = 70,
+							height = 20,
+							relative = "cursor",
+							preview = {
+								hidden = true,
+								vertical = "down:50%",
+							},
+						},
+					},
+				},
+			}
+		end,
 	},
 }

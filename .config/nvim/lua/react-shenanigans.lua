@@ -1,4 +1,3 @@
--- Define a function to move cursor to a match in the styles file
 local function move_cursor_to_match(name)
 	-- Open the styles file
 	local styles_file = vim.fn.expand("%:p:h") .. "/{styles.*,*.module.css}"
@@ -17,7 +16,6 @@ local function move_cursor_to_match(name)
 	end
 end
 
--- Define a function to open the styles file for the current component
 function Open_styles_file()
 	-- Get the name under the cursor
 	local name = vim.fn.expand("<cword>")

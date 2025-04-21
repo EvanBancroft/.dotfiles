@@ -13,9 +13,9 @@ return {
 	dependencies = {
 		-- Required.
 		"nvim-lua/plenary.nvim",
-		"hrsh7th/nvim-cmp",
+		-- "hrsh7th/nvim-cmp",
 		"nvim-treesitter",
-		"nvim-telescope/telescope.nvim",
+		-- "nvim-telescope/telescope.nvim",
 
 		-- see below for full list of optional dependencies 👇
 	},

@@ -18,22 +18,6 @@ return {
 	},
 	{ "Bilal2453/luvit-meta", lazy = true },
 	{
-		"pmizio/typescript-tools.nvim",
-		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-		opts = {
-			on_attach = function(client, bufnr)
-				client.server_capabilities.documentFormattingProvider = false
-				client.server_capabilities.documentRangeFormattingProvider = false
-			end,
-			settings = {
-				-- jsx_close_tag = {
-				-- 	enable = true,
-				-- 	filetypes = { "javascriptreact", "typescriptreact" },
-				-- },
-			},
-		},
-	},
-	{
 		-- Main LSP Configuration
 		"neovim/nvim-lspconfig",
 		dependencies = {
@@ -81,23 +65,13 @@ return {
 					map("<leader>vd", function()
 						vim.diagnostic.open_float()
 					end, "[V]iew [D]iagnostic")
-					map("<leader>ca", function()
-						require("fzf-lua").lsp_code_actions({
-							winopts = {
-								relative = "cursor",
-								width = 0.6,
-								height = 0.6,
-								row = 1,
-								preview = { vertical = "up:70%" },
-							},
-						})
-					end, "[C]ode [A]ction")
-					-- map("[d", function()
-					-- 	vim.diagnostic.goto_next()
-					-- end, "Goto Next")
-					-- map("]d", function()
-					-- 	vim.diagnostic.goto_prev()
-					-- end, "Goto Prev")
+
+					map(
+						"<leader>ca",
+						"<cmd>FzfLua lsp_code_actions previewer=false winopts.row=0.25 winopts.width=0.7 winopts.height=0.42<cr>",
+						"[C]ode [A]ction",
+						{ "n", "x" }
+					)
 
 					vim.keymap.set("n", "<leader>vrr", function()
 						vim.lsp.buf.references()
@@ -112,8 +86,17 @@ return {
 			capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 
 			local servers = {
-				ts_ls = {},
 				gopls = {},
+				ts_ls = {},
+				cssls = {
+					settings = {
+						css = {
+							lint = {
+								unknownAtRules = "ignore",
+							},
+						},
+					},
+				},
 				lua_ls = {
 					settings = {
 						Lua = {
