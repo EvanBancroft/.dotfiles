@@ -10,6 +10,8 @@ echo "Installing Brew..."
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 brew analytics off
 
+brew tap FelixKratz/formulae
+
 ## Formulae
 echo "Installing Brew Formulae..."
 ### Essentials
@@ -29,8 +31,8 @@ brew install neovim
 brew install fzf
 brew install tmux
 brew install zoxide
-brew install asdf-vm
-brew install 1password
+brew install asdf
+brew install nvm
 
 ### Nice to have
 brew install btop
@@ -45,9 +47,11 @@ brew install --cask arc
 ## Nice to have
 brew install --cask spotify
 brew install --cask figma
+brew install --cask slack
+brew install --cask zoom
 
 ### Fonts
-brew install --cask font-jetbrains-mono
+brew install --cask font-jetbrains-mono-nerd-font
 
 # macOS Settings
 echo "Changing macOS defaults..."

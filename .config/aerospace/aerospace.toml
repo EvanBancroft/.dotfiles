@@ -123,11 +123,14 @@ run = 'move-node-to-workspace 4'
 if.app-id = 'com.tinyspeck.slackmacgap'
 run = 'move-node-to-workspace 4'
 
+[[on-window-detected]]
+if.app-id = 'us.zoom.xos'
+run = 'move-node-to-workspace 5'
+
 # Notes App
 [[on-window-detected]]
 if.app-id = 'md.obsidian'
 run = 'move-node-to-workspace 5'
 
 [workspace-to-monitor-force-assignment]
-3 = '^built-in retina display$'
-4 = ['secondary', 'dell']
+4 = '^built-in retina display$'
