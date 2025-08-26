@@ -1,9 +1,11 @@
 return {
 	{
-		"williamboman/mason.nvim",
+		"mason-org/mason.nvim",
 		lazy = false,
 		config = true,
+		version = "1.11.0",
 	},
+	{ "mason-org/mason-lspconfig.nvim", version = "1.32.0" },
 	{
 		-- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
 		-- used for completion, annotations and signatures of Neovim apis
@@ -22,10 +24,10 @@ return {
 		"neovim/nvim-lspconfig",
 		dependencies = {
 			-- Automatically install LSPs and related tools to stdpath for Neovim
-			{ "williamboman/mason.nvim", config = true },
+			{ "mason-org/mason.nvim", config = true },
 			"saghen/blink.cmp",
 
-			"williamboman/mason-lspconfig.nvim",
+			"mason-org/mason-lspconfig.nvim",
 			"WhoIsSethDaniel/mason-tool-installer.nvim",
 
 			-- Useful status updates for LSP.
@@ -88,6 +90,7 @@ return {
 			local servers = {
 				gopls = {},
 				ts_ls = {},
+				ruby_lsp = {},
 				cssls = {
 					settings = {
 						css = {
@@ -129,6 +132,7 @@ return {
 				"bash-language-server",
 				"astro-language-server",
 				"eslint_d",
+				"rubocop",
 			})
 			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 

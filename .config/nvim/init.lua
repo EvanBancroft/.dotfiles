@@ -20,6 +20,7 @@ require("lazy").setup("plugins")
 require("keymaps")
 require("lsp")
 require("react-shenanigans")
+require("ruby-shenanigans")
 require("vim-options")
 
 vim.o.termguicolors = true

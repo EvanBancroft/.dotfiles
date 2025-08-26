@@ -13,6 +13,7 @@ return {
 				astro = { "eslint_d" },
 				go = { "golangcilint" },
 				css = { "stylelint" },
+				ruby = { "rubocop" },
 			}
 
 			local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
@@ -55,18 +56,28 @@ return {
 				json = { "prettierd", "prettier", stop_after_first = true },
 				jsonc = { "prettierd", "prettier", stop_after_first = true },
 				yaml = { "prettierd", "prettier", stop_after_first = true },
+				ruby = { "rubocop" },
+				eruby = { "erb_format" },
 				-- markdown = { "prettierd", "prettier", stop_after_first = true },
 				-- ["markdown.mdx"] = { "prettierd", "prettier", stop_after_first = true },
 				graphql = { "prettierd", "prettier", stop_after_first = true },
 				handlebars = { "prettierd", "prettier", stop_after_first = true },
 			},
 			-- Set up format-on-save
-			format_on_save = { timeout_ms = 500, lsp_fallback = true },
+			format_on_save = { timeout_ms = 5000, lsp_fallback = true },
 			-- Customize formatters
 			formatters = {
 				shfmt = {
 					prepend_args = { "-i", "2" },
 				},
+				-- rubocop = {
+				-- 	command = "bundle",
+				-- 	args = { "exec", "rubocop", "--no-server", "-a", "$FILENAME" },
+				-- 	stdin = false,
+				-- 	cwd = function(ctx)
+				-- 		return vim.fn.fnamemodify(ctx.filename, ":h")
+				-- 	end,
+				-- },
 			},
 		},
 		init = function()
