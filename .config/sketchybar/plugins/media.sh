@@ -1,11 +1,36 @@
 #!/usr/bin/env bash
 
-STATE="$(echo "$INFO" | jq -r '.state')"
-APP="$(echo "$INFO" | jq -r '.app')"
+# Get Spotify info using AppleScript (works on Sequoia)
+get_spotify_info() {
+  osascript -e '
+    tell application "System Events"
+        if (name of processes) contains "Spotify" then
+            tell application "Spotify"
+                if player state is playing then
+                    set track_name to name of current track
+                    set artist_name to artist of current track
+                    return track_name & " - " & artist_name
+                else
+                    return ""
+                end if
+            end tell
+        else
+            return ""
+        end if
+    end tell
+    ' 2>/dev/null
+}
 
-if [ "$STATE" = "playing" ] && [ "$APP" == "Spotify" ]; then
-	MEDIA="$(echo "$INFO" | jq -r '.title + " - " + .artist')"
-	sketchybar --set "$NAME" label="$MEDIA" drawing=on
+# Get the media info
+MEDIA=$(get_spotify_info)
+
+# Debug logging
+echo "$(date): Spotify check - Media: '$MEDIA'" >>~/sketchybar-debug.log
+
+if [[ -n "$MEDIA" && "$MEDIA" != "" ]]; then
+  echo "$(date): Showing: $MEDIA" >>~/sketchybar-debug.log
+  sketchybar --set "$NAME" label="$MEDIA" drawing=on
 else
-	sketchybar --set "$NAME" drawing=off
+  echo "$(date): Hiding media" >>~/sketchybar-debug.log
+  sketchybar --set "$NAME" drawing=off
 fi

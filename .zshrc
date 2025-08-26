@@ -91,6 +91,9 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 alias ls='ls --color'
 alias dt='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias oo='cd $HOME/library/Mobile\ Documents/iCloud~md~obsidian/Documents/v2.0.1'
+alias cb="~/bin/coverage-tracker.sh baseline"
+alias cc="~/bin/coverage-tracker.sh check" 
+alias cr="~/bin/coverage-tracker.sh reset"
 
 
 # Shell integrations
@@ -121,4 +124,8 @@ export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
 . "$HOME/.local/bin/env"
-export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
+export PATH="/opt/homebrew/opt/postgresql@17/bin:$PATH"
+
+export PATH="$PATH:/Users/evanbancroft/.claude/local/claude"
+alias claude="/Users/evanbancroft/.claude/local/claude"
+

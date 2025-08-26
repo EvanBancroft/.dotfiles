@@ -6,5 +6,5 @@ sketchybar --add item media right \
             scroll_texts=on \
             background.drawing=off \
             script="$PLUGIN_DIR/media.sh" \
-            icon= \
-            --subscribe media media_change
+            update_freq=1 \
+            icon=
