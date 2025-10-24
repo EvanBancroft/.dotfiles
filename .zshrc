@@ -1,5 +1,6 @@
 # Add deno completions to search path
 if [[ ":$FPATH:" != *":/Users/evanbancroft/.zsh/completions:"* ]]; then export FPATH="/Users/evanbancroft/.zsh/completions:$FPATH"; fi
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -7,13 +8,21 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-export PATH=~/bin:$PATH
-
-
+# Initialize Homebrew (should be early to set up environment)
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
+# PATH additions
+export PATH="$HOME/bin:$PATH"
+export PATH="$HOME/.rbenv/bin:$PATH"
+export PATH="$HOME/.spicetify:$PATH"
+export PATH="$HOME/.bun/bin:$PATH"
+export PATH="/opt/homebrew/opt/postgresql@17/bin:$PATH"
+export PATH="$HOME/.claude/local/claude:$PATH"
+
+
+
 # Set the directory we want to store zinit and plugins
-ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}zinit/zinit.git"
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
 # Download Zinit, if it's not there yet
 if [ ! -d "$ZINIT_HOME" ]; then
@@ -87,45 +96,31 @@ zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
-# Aliases 
-alias ls='ls --color'
+# Aliases
+alias ls='ls -G'  # macOS BSD ls uses -G instead of --color
 alias dt='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias oo='cd $HOME/library/Mobile\ Documents/iCloud~md~obsidian/Documents/v2.0.1'
 alias cb="~/bin/coverage-tracker.sh baseline"
-alias cc="~/bin/coverage-tracker.sh check" 
+alias cc="~/bin/coverage-tracker.sh check"
 alias cr="~/bin/coverage-tracker.sh reset"
+alias h2='$(npm prefix -s)/node_modules/.bin/shopify hydrogen'
+alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
 
 
 # Shell integrations
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
-
-export NVM_DIR="$HOME/.nvm"
-  [ -s "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" ] && \. "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" # This loads nvm
-  [ -s "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" # This loads nvm bash_completion
-
-# Shopify Hydrogen alias to local projects
-alias h2='$(npm prefix -s)/node_modules/.bin/shopify hydrogen'
-
-alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
-
-export EDITOR="nvim"
-
-export PATH=$PATH:/Users/evanbancroft/.spicetify
-
-export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 
-# bun completions
-[ -s "/Users/evanbancroft/.bun/_bun" ] && source "/Users/evanbancroft/.bun/_bun"
+# NVM
+export NVM_DIR="$HOME/.nvm"
+[ -s "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" ] && \. "$HOMEBREW_PREFIX/opt/nvm/nvm.sh"
+[ -s "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm"
 
-# bun
+# Bun completions
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
 
-. "$HOME/.local/bin/env"
-export PATH="/opt/homebrew/opt/postgresql@17/bin:$PATH"
-
-export PATH="$PATH:/Users/evanbancroft/.claude/local/claude"
-alias claude="/Users/evanbancroft/.claude/local/claude"
+# Local bin environment
+[ -f "$HOME/.local/bin/env" ] && . "$HOME/.local/bin/env"
 
